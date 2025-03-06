@@ -13,7 +13,6 @@ export function JsonLd() {
         "@type": "EntryPoint",
         urlTemplate: "https://kaspa-tip.vercel.app/search?q={search_term_string}",
       },
-      "query-input": "required name=search_term_string",
     },
   }
 
