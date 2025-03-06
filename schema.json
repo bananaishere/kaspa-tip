@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KaspaTip Configuration Schema",
+  "description": "Schema for KaspaTip configuration and future integrations",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version of the KaspaTip application"
+    },
+    "feeSettings": {
+      "type": "object",
+      "properties": {
+        "feeAddress": {
+          "type": "string",
+          "description": "Kaspa address where fees are sent"
+        },
+        "feePercentage": {
+          "type": "number",
+          "description": "Percentage of transaction amount to be charged as fee"
+        },
+        "minFee": {
+          "type": "number",
+          "description": "Minimum fee amount in KAS"
+        },
+        "maxFee": {
+          "type": "number",
+          "description": "Maximum fee amount in KAS"
+        }
+      },
+      "required": ["feeAddress", "feePercentage"]
+    },
+    "walletIntegration": {
+      "type": "object",
+      "properties": {
+        "supportedWallets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["kasware", "kaspium", "custom"]
+          },
+          "description": "List of supported wallet types"
+        },
+        "customWalletConfig": {
+          "type": "object",
+          "description": "Configuration for custom wallet integration"
+        }
+      }
+    },
+    "uiSettings": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark", "system"],
+          "default": "system",
+          "description": "UI theme preference"
+        },
+        "primaryColor": {
+          "type": "string",
+          "description": "Primary color for UI elements"
+        },
+        "logo": {
+          "type": "string",
+          "description": "URL to custom logo"
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "transactionHistory": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable transaction history feature"
+        },
+        "addressBook": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable address book feature"
+        },
+        "recurringPayments": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable recurring payments feature"
+        },
+        "multiSend": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable sending to multiple addresses at once"
+        }
+      }
+    },
+    "apiIntegrations": {
+      "type": "object",
+      "properties": {
+        "explorer": {
+          "type": "string",
+          "description": "URL to Kaspa block explorer API"
+        },
+        "rateProvider": {
+          "type": "string",
+          "description": "URL to exchange rate API"
+        },
+        "customApis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "apiKey": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "url"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["version", "feeSettings"]
+}
+
