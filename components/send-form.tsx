@@ -418,8 +418,8 @@ export function SendForm() {
                       const { testKaswareTransaction } = require("@/lib/test-utils")
                       await testKaswareTransaction(address)
                       alert("Test transaction sent! Check console for details.")
-                    } catch (error) {
-                      alert(`Test failed: ${error.message}`)
+                    } catch (error: any) {
+                      alert(`Test failed: ${error.message || "Unknown error"}`)
                     }
                   }}
                 >
