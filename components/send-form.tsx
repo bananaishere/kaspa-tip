@@ -41,7 +41,7 @@ export function SendForm() {
         // Log available methods for debugging
         console.log("Available Kasware methods:", Object.keys(window.kasware))
 
-        const accounts = await window.kasware.getAccounts()
+        const accounts = window.kasware?.getAccounts ? await window.kasware.getAccounts() : []
         const isConnected = accounts && accounts.length > 0
         setIsWalletConnected(isConnected)
         if (isConnected) {
